@@ -18,7 +18,7 @@ You will need:
 ### Compile and Run in Local Dev Mode
 
 ```
-mvn clean compile quarkus:dev
+mvn clean compile quarkus:dev 
 ```
 
 ### Package and Run in JVM mode
