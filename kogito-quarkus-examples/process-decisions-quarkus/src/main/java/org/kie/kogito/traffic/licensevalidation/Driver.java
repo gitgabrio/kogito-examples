@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.kie.kogito.traffic;
+package org.kie.kogito.traffic.licensevalidation;
 
 import java.util.Date;
 

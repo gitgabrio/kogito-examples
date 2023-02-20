@@ -13,24 +13,17 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.kie.kogito.traffic.licensevalidation
+package org.kie.kogito.traffic.licensevalidated
 
-unit LicenseValidationService
+unit LicenseValidatedService
 
-rule "Is driver license valid"
+rule "Is validated license validated"
 when            
-    $driver: /driver[licenseExpiration.after(currentTime)]
+    $validated: /validated[suspended.equalsIgnoreCase("yes")]
 then
-    $driver.setValidLicense(true);
-end
-
-rule "Is driver license expired"
-when            
-    $driver: /driver[licenseExpiration.before(currentTime)]
-then
-    $driver.setValidLicense(false);
+    $validated.setValidLicense(true);
 end
 
 query "validation"
-  $driver : /driver
+  $validated : /validated
 end
