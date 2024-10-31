@@ -28,4 +28,4 @@ curl -X POST 'http://localhost:8080/LoanEligibility' -H 'Content-Type: applicati
     }'
 ```
 
-but.. what about test ?
+Ok, now some test going on... 
