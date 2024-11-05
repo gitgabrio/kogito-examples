@@ -54,6 +54,7 @@
       <modules>
         <module>decisiontable-quarkus-example</module>
         <module>dmn-15-quarkus-example</module>
+        <module>dmn-coolest-example</module>
         <module>dmn-drools-quarkus-metrics</module>
         <module>dmn-event-driven-quarkus</module>
         <module>dmn-incubation-api-quarkus</module>
