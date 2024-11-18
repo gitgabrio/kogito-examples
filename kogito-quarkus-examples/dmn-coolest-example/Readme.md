@@ -47,3 +47,22 @@ Now here it is
 http://localhost:8080/q/swagger-ui
 
 Always include quarkus.swagger-ui.always-include=true in quarkus applications!!!
+
+Debug, debug, debug...
+======================
+
+Code generation
+---------------
+1. open org.kie.kogito.codegen.core.AbstractGenerator inside kogito-runtimes 
+2. put breakpoints at line 42 and 69
+3. issue mvn clean compile quarkus:dev -Dsuspend
+4. connect kogito-runtimes remote debugger at port 5005
+5. debug code generation
+6. stop debugger on kogito-runtimes
+
+Application runtime
+-------------------
+1. open target/generated-sources/https_58_47_47github_46com_47kiegroup_47kogito_45examples_47dmn_45quarkus_45listener_45example/LoanEligibilityResource.java
+2. put breakpoint at line 65
+3. connect kogito-examples remote debugger at port 5005 
+4. execute post on http://localhost:8080/LoanEligibility
