@@ -28,4 +28,8 @@ curl -X POST 'http://localhost:8080/LoanEligibility' -H 'Content-Type: applicati
     }'
 ```
 
+```sh
+mvn clean verify
+```
+
 but.. what about test ?
