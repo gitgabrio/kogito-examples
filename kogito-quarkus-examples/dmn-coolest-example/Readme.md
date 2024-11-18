@@ -33,3 +33,15 @@ mvn clean verify
 ```
 
 Ok, now some test going on... 
+
+And the new module has been referenced in [parent pom](../pom.xml)
+
+But... what about executing jar ?
+
+```
+mvn clean package
+java -jar target/quarkus-app/quarkus-run.jar
+```
+
+Where is http://localhost:8080/q/swagger-ui
+?
