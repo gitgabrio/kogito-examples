@@ -43,5 +43,7 @@ mvn clean package
 java -jar target/quarkus-app/quarkus-run.jar
 ```
 
-Where is http://localhost:8080/q/swagger-ui
-?
+Now here it is
+http://localhost:8080/q/swagger-ui
+
+Always include quarkus.swagger-ui.always-include=true in quarkus applications!!!
