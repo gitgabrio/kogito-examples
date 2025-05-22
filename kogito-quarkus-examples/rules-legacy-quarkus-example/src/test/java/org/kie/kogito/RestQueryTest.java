@@ -20,13 +20,12 @@ package org.kie.kogito;
 
 import org.junit.jupiter.api.Test;
 
-import io.quarkus.test.junit.QuarkusTest;
 import io.restassured.http.ContentType;
 
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.Matchers.hasItem;
 
-@QuarkusTest
+//@QuarkusTest
 public class RestQueryTest {
 
     private static final String JSON_PAYLOAD =

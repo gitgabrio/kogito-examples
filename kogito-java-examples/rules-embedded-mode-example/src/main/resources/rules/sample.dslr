@@ -1,4 +1,4 @@
-/*
+/**
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -16,29 +16,13 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.kie.kogito.legacy;
 
-import java.util.List;
+package org.kie.kogito.rules.embedded
 
-public class LoanDto {
+expander sample.dsl
 
-    private int maxAmount;
-
-    private List<LoanApplication> loanApplications;
-
-    public int getMaxAmount() {
-        return maxAmount;
-    }
-
-    public void setMaxAmount(int maxAmount) {
-        this.maxAmount = maxAmount;
-    }
-
-    public List<LoanApplication> getLoanApplications() {
-        return loanApplications;
-    }
-
-    public void setLoanApplications(List<LoanApplication> loanApplications) {
-        this.loanApplications = loanApplications;
-    }
-}
+rule "simple"
+	when
+	then
+		hello
+end

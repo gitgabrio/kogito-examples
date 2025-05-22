@@ -1,4 +1,4 @@
-/*
+/**
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
  * distributed with this work for additional information
@@ -16,42 +16,21 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.kie.kogito.legacy;
 
-public class Applicant {
+package org.kie.kogito.rules.embedded
 
-    private String name;
-    private int age;
+expander dslQuery.dsl
 
-    public Applicant() {
-    }
+query "isMature"(Person p)
+    There is a person
+        - age is greater than 18
+        - equals p
+end
 
-    public Applicant(String name, int age) {
-        this.name = name;
-        this.age = age;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    @Override
-    public String toString() {
-        return "Applicant{" +
-                "name='" + name + '\'' +
-                ", age=" + age +
-                '}';
-    }
-}
+rule "mature person"
+    when
+        There is a person $person
+        Person $person is mature
+    then
+        Consequences
+end
