@@ -16,12 +16,29 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package org.kie.kogito;
+package org.kie.kogito.legacy;
 
-import io.quarkus.test.junit.QuarkusIntegrationTest;
+import java.util.List;
 
-@QuarkusIntegrationTest
-public class NativeRestQueryTestIT extends RestQueryTest {
+public class LoanDto {
 
-    // Execute the same tests but in native mode.
+    private int maxAmount;
+
+    private List<LoanApplication> loanApplications;
+
+    public int getMaxAmount() {
+        return maxAmount;
+    }
+
+    public void setMaxAmount(int maxAmount) {
+        this.maxAmount = maxAmount;
+    }
+
+    public List<LoanApplication> getLoanApplications() {
+        return loanApplications;
+    }
+
+    public void setLoanApplications(List<LoanApplication> loanApplications) {
+        this.loanApplications = loanApplications;
+    }
 }
