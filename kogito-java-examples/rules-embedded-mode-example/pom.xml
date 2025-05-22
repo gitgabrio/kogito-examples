@@ -39,6 +39,7 @@
         <version.org.kie>999-SNAPSHOT</version.org.kie>
 
         <version.org.slf4j>2.0.13</version.org.slf4j>
+        <version.junit-jupiter>5.8.1</version.junit-jupiter>
     </properties>
 
     <dependencyManagement>
@@ -54,84 +55,52 @@
     </dependencyManagement>
 
     <dependencies>
-<!--        <dependency>-->
-<!--            <groupId>org.drools</groupId>-->
-<!--            <artifactId>drools-compiler</artifactId>-->
-<!--        </dependency>-->
-
-<!--        <dependency>-->
-<!--            <groupId>org.drools</groupId>-->
-<!--            <artifactId>drools-model-compiler</artifactId>-->
-<!--        </dependency>-->
-
-<!--        &lt;!&ndash; DebugRuleRuntimeEventListener &ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>org.drools</groupId>-->
-<!--            <artifactId>drools-core</artifactId>-->
-<!--        </dependency>-->
-<!--        -->
-<!--        <dependency>-->
-<!--            <groupId>org.drools</groupId>-->
-<!--            <artifactId>drools-mvel</artifactId>-->
-<!--        </dependency>-->
-
-<!--        <dependency>-->
-<!--            <groupId>org.drools</groupId>-->
-<!--            <artifactId>drools-xml-support</artifactId>-->
-<!--        </dependency>-->
-
-<!--&lt;!&ndash;- ADD &ndash;&gt;-->
-<!--        <dependency>-->
-<!--        <groupId>org.kie</groupId>-->
-<!--        <artifactId>kie-internal</artifactId>-->
-<!--    </dependency>-->
-<!--    <dependency>-->
-<!--        <groupId>org.kie</groupId>-->
-<!--        <artifactId>kie-ci</artifactId>-->
-<!--    </dependency>-->
-<!--    <dependency>-->
-<!--        <groupId>org.kie</groupId>-->
-<!--        <artifactId>kie-test-util</artifactId>-->
-<!--    </dependency>-->
-        <!-- END -->
+        <dependency>
+            <groupId>org.drools</groupId>
+            <artifactId>drools-compiler</artifactId>
+        </dependency>
 
         <dependency>
-            <groupId>org.kie</groupId>
-            <artifactId>kie-api</artifactId>
-            
+            <groupId>org.drools</groupId>
+            <artifactId>drools-model-compiler</artifactId>
         </dependency>
+
+        <!-- DebugRuleRuntimeEventListener -->
         <dependency>
             <groupId>org.drools</groupId>
             <artifactId>drools-core</artifactId>
-            
+            <exclusions>
+                <exclusion>
+                    <groupId>org.drools</groupId>
+                    <artifactId>drools-wiring-static</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
         <dependency>
             <groupId>org.drools</groupId>
-            <artifactId>drools-decisiontables</artifactId>
-            
+            <artifactId>drools-wiring-dynamic</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>org.drools</groupId>
+            <artifactId>drools-mvel</artifactId>
+        </dependency>
 
-        <dependency>
-            <groupId>org.kie</groupId>
-            <artifactId>kie-internal</artifactId>
-            
-        </dependency>
-        <dependency>
-            <groupId>org.kie</groupId>
-            <artifactId>kie-ci</artifactId>
-            
-        </dependency>
-        <dependency>
-            <groupId>org.kie</groupId>
-            <artifactId>kie-test-util</artifactId>
-            
-        </dependency>
         <dependency>
             <groupId>org.drools</groupId>
             <artifactId>drools-xml-support</artifactId>
-            
         </dependency>
+
+                <dependency>
+                    <groupId>org.kie</groupId>
+                    <artifactId>kie-api</artifactId>
+                </dependency>
+
+<!--        <dependency>-->
+<!--            <groupId>org.kie</groupId>-->
+<!--            <artifactId>kie-ci</artifactId>-->
+<!--        </dependency>-->
+
         <!-- Logging -->
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -147,19 +116,85 @@
       <dependency>
         <groupId>org.junit.jupiter</groupId>
         <artifactId>junit-jupiter</artifactId>
-        <version>5.8.1</version>
+        <version>${version.junit-jupiter}</version>
         <scope>test</scope>
       </dependency>
     </dependencies>
 
-<!--    <build>-->
-<!--        <plugins>-->
+    <build>
+        <plugins>
 <!--            <plugin>-->
 <!--                <groupId>org.kie</groupId>-->
 <!--                <artifactId>kie-maven-plugin</artifactId>-->
 <!--                <version>${version.org.kie}</version>-->
 <!--                <extensions>true</extensions>-->
 <!--            </plugin>-->
-<!--        </plugins>-->
-<!--    </build>-->
+            <plugin>
+                <!-- Build an executable JAR -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+<!--                            <classpathPrefix>lib/</classpathPrefix>-->
+                            <mainClass>${exec.mainClass}</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.5.2</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <transformers>
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <mainClass>${exec.mainClass}</mainClass>
+                                </transformer>
+                            </transformers>
+                            <filters>
+                                <filter>
+                                    <artifact>*:*</artifact>
+                                    <excludes>
+                                        <exclude>META-INF/*.SF</exclude>
+                                        <exclude>META-INF/*.DSA</exclude>
+                                        <exclude>META-INF/*.RSA</exclude>
+                                    </excludes>
+                                </filter>
+                            </filters>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+<!--            <plugin>-->
+<!--                <groupId>org.apache.maven.plugins</groupId>-->
+<!--                <artifactId>maven-dependency-plugin</artifactId>-->
+<!--                <version>2.6</version>-->
+<!--                <executions>-->
+<!--                    <execution>-->
+<!--                        <id>unpack-dependencies</id>-->
+<!--                        <phase>package</phase>-->
+<!--                        <goals>-->
+<!--                            <goal>unpack-dependencies</goal>-->
+<!--                        </goals>-->
+<!--                        <configuration>-->
+<!--                            <excludeScope>system</excludeScope>-->
+<!--                            <excludes>META-INF/*.SF,META-INF/*.DSA,META-INF/*.RSA</excludes>-->
+<!--                            <excludeGroupIds>junit,org.mockito,org.hamcrest</excludeGroupIds>-->
+<!--                            <outputDirectory>${project.build.directory}/classes</outputDirectory>-->
+<!--                        </configuration>-->
+<!--                    </execution>-->
+<!--                </executions>-->
+<!--            </plugin>-->
+
+        </plugins>
+    </build>
 </project>
