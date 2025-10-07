@@ -28,12 +28,9 @@
         <version>999-SNAPSHOT</version>
     </parent>
 
-    <artifactId>rules-app</artifactId>
-    <name>Kogito Example :: Rule Embedded Mode Application</name>
-
-    <properties>
-        <exec.mainClass>org.kie.kogito.rules.embedded.RulesEmbeddedModeExample</exec.mainClass>
-    </properties>
+    <artifactId>rules-a-jar</artifactId>
+    <name>Kogito Example :: Rule Embedded Mode Rules A Jar</name>
+    <packaging>kjar</packaging>
 
     <dependencies>
         <dependency>
@@ -62,12 +59,6 @@
             <artifactId>drools-xml-support</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>org.kie</groupId>
-            <artifactId>kie-ci</artifactId>
-        </dependency>
-
-
         <!-- Logging -->
         <dependency>
             <groupId>org.slf4j</groupId>
@@ -79,17 +70,16 @@
             <artifactId>slf4j-simple</artifactId>
             <version>${version.org.slf4j}</version>
         </dependency>
-
-        <dependency>
-            <groupId>org.kie.kogito.rules.embedded</groupId>
-            <artifactId>rules-a-jar</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.kie.kogito.rules.embedded</groupId>
-            <artifactId>rules-b-jar</artifactId>
-            <version>${project.version}</version>
-        </dependency>
     </dependencies>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.kie</groupId>
+                <artifactId>kie-maven-plugin</artifactId>
+                <version>${version.org.kie}</version>
+                <extensions>true</extensions>
+            </plugin>
+        </plugins>
+    </build>
 </project>

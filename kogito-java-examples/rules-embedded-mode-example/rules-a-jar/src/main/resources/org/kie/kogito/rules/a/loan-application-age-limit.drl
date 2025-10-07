@@ -1,0 +1,15 @@
+package org.kie.kogito.rules.a;
+
+import org.kie.kogito.rules.a.Applicant;
+import org.kie.kogito.rules.a.LoanApplication;
+
+rule "Underage"
+  salience 15
+  agenda-group "applicationGroup"
+  when
+    $application : LoanApplication( $applicantId: applicantId )
+    Applicant( id == $applicantId && age < 21 )
+  then
+    $application.setApproved( false );
+    $application.setExplanation( "Underage" );
+end

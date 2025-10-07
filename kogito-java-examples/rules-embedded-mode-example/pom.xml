@@ -53,7 +53,8 @@
     </dependencyManagement>
 
     <modules>
-        <module>rules-jar</module>
+        <module>rules-a-jar</module>
+        <module>rules-b-jar</module>
         <module>rules-app</module>
     </modules>
 </project>
