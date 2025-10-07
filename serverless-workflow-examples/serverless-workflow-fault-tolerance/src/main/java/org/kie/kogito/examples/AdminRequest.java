@@ -16,11 +16,9 @@
  * specific language governing permissions and limitations
  * under the License.
  */
-package testscenario;
+package org.kie.kogito.examples;
 
-/**
- * Do not remove this file
- */
-@org.junit.runner.RunWith(org.drools.scenariosimulation.backend.runner.ScenarioJunitActivator.class)
-public class ScenarioJunitActivatorTest {
+public class AdminRequest {
+    public String operation;
+    public boolean enabled;
 }
