@@ -5,7 +5,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.function.BiConsumer;
 import org.drools.commands.SetActiveAgendaGroup;
 import org.drools.core.event.DebugRuleRuntimeEventListener;
 import org.kie.api.KieBase;

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<kmodule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns="http://www.drools.org/xsd/kmodule">
+  <kbase name="KBaseA" default="true" eventProcessingMode="cloud" equalsBehavior="equality" declarativeAgenda="enabled" packages="org.kie.kogito.decisions.a">
+    <ksession name="KBaseA_stateful" type="stateful" default="true"/>
+    <ksession name="KBaseA_stateless" type="stateless" default="false"/>
+  </kbase>
+</kmodule>

@@ -20,7 +20,7 @@
         <activeByDefault>true</activeByDefault>
       </activation>
       <modules>
-        <module>dmn-embedded-mode-example</module>
+        <module>decisions-embedded-mode-example</module>
         <module>rules-embedded-mode-example</module>
       </modules>
     </profile>
